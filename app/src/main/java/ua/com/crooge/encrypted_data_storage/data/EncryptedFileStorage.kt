@@ -24,16 +24,15 @@ class EncryptedFileStorage(private val context: Context, val moshi: Moshi) {
             .fromJson(String(file.openFileInput().readBytes()))
     }
 
-    inline fun <reified T> saveList(key: String, obj: List<T>) =
-        remove(key).also {
-            getEncryptedFile(key)?.openFileOutput()?.bufferedWriter()?.use { writer ->
-                writer.write(
-                    moshi.adapter<List<T>>(
-                        Types.newParameterizedType(List::class.java, T::class.java)
-                    ).toJson(obj)
-                )
-            }
+    inline fun <reified T> saveList(key: String, obj: List<T>) = remove(key).also {
+        getEncryptedFile(key)?.openFileOutput()?.bufferedWriter()?.use { writer ->
+            writer.write(
+                moshi.adapter<List<T>>(
+                    Types.newParameterizedType(List::class.java, T::class.java)
+                ).toJson(obj)
+            )
         }
+    }
 
     inline fun <reified T> loadList(key: String) =
         getEncryptedFile(key, write = false)?.let { file ->
