@@ -1,22 +1,18 @@
 package ua.com.crooge.encrypted_data_storage.data
 
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import androidx.core.content.edit
-import androidx.security.crypto.EncryptedSharedPreferences
-import androidx.security.crypto.MasterKeys
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 
-private const val ENCRYPTED_SHARED_PREFERENCES_STORAGE = "encrypted_shared_preferences_storage"
+private const val SHARED_PREFERENCES_STORAGE_NAME = "shared_preferences_storage"
 
-class EncryptedSharedPreferencesStorage(context: Context, val moshi: Moshi) :
-    SharedPreferences by EncryptedSharedPreferences.create(
-        ENCRYPTED_SHARED_PREFERENCES_STORAGE,
-        MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC),
-        context,
-        EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-        EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+class SharedPreferencesStorage(context: Context, val moshi: Moshi) :
+    SharedPreferences by context.getSharedPreferences(
+        SHARED_PREFERENCES_STORAGE_NAME,
+        MODE_PRIVATE
     ) {
 
     inline fun <reified T> putObject(key: String, obj: T) =
@@ -43,5 +39,5 @@ class EncryptedSharedPreferencesStorage(context: Context, val moshi: Moshi) :
 
     fun remove(key: String) = edit { remove(key) }
 
-    fun clear() = edit(commit = true) { clear() }
+    fun clear() = edit { clear() }
 }

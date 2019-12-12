@@ -9,7 +9,7 @@ import java.io.File
 
 class EncryptedFileStorage(private val context: Context, val moshi: Moshi) {
 
-    private val filesFolder = File("${context.filesDir}").also { fileFolder ->
+    private val filesFolder = File("${context.filesDir}/encrypted_data/").also { fileFolder ->
         fileFolder.mkdirs()
     }
 
