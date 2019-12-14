@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.start
+import ua.com.crooge.encrypted_data_storage.common.Encryptor
 import ua.com.crooge.encrypted_data_storage.common.getMethodExecutionTime
 import ua.com.crooge.encrypted_data_storage.data.EncryptedFileStorage
 import ua.com.crooge.encrypted_data_storage.data.EncryptedSharedPreferencesStorage
 import ua.com.crooge.encrypted_data_storage.data.FileStorage
+import ua.com.crooge.encrypted_data_storage.data.FileStorageWithEncryptor
 import ua.com.crooge.encrypted_data_storage.data.SharedPreferencesStorage
 import ua.com.crooge.encrypted_data_storage.model.User
 
@@ -18,11 +20,14 @@ class MainActivity : AppCompatActivity() {
         .add(KotlinJsonAdapterFactory())
         .build()
 
+    private val encryptor = Encryptor()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         start.setOnClickListener {
+
             /* ============== Users ============== */
 
             val billie = User("Billie", "Eilish", 17, "Los Angeles")
@@ -70,6 +75,26 @@ class MainActivity : AppCompatActivity() {
             time = getMethodExecutionTime { encryptedSharedPreferencesStorage.getList<User>("artists") }
 
             /* =============================================================== */
+
+
+
+            /* ============== FileStorageWithEncryptor ============== */
+
+            val fileStorageWithEncryptor = FileStorageWithEncryptor(applicationContext, moshi, encryptor)
+
+//        fileStorageWithEncryptor.save("Angelina Jolie", angelina)
+            time = getMethodExecutionTime { fileStorageWithEncryptor.save("Angelina Jolie", angelina) }
+
+//        val angelinaJolieFSWE = fileStorageWithEncryptor.load<User>("Angelina Jolie")
+            time = getMethodExecutionTime { fileStorageWithEncryptor.load<User>("Angelina Jolie") }
+
+//        fileStorageWithEncryptor.saveList("artists", listOf(billie, elizabeth, angelina))
+            time = getMethodExecutionTime { fileStorageWithEncryptor.saveList("artists", listOf(billie, elizabeth, angelina)) }
+
+//        val artistsFSWE = fileStorageWithEncryptor.loadList<User>("artists")
+            time = getMethodExecutionTime { fileStorageWithEncryptor.loadList<User>("artists") }
+
+            /* ================================================== */
 
 
 
