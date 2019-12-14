@@ -6,7 +6,7 @@ import com.squareup.moshi.Types
 import ua.com.crooge.encrypted_data_storage.common.Encryptor
 import java.io.File
 
-class FileStorageWithEncryptor(context: Context, val moshi: Moshi, val encryptor: Encryptor) {
+class FileWithEncryptorStorage(context: Context, val moshi: Moshi, val encryptor: Encryptor) {
 
     private val filesFolder = File("${context.filesDir}/encrypted_data_with_encryptor/").also { fileFolder ->
         fileFolder.mkdirs()

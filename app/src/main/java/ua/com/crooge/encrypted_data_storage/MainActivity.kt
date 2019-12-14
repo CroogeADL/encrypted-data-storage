@@ -10,8 +10,9 @@ import ua.com.crooge.encrypted_data_storage.common.getMethodExecutionTime
 import ua.com.crooge.encrypted_data_storage.data.EncryptedFileStorage
 import ua.com.crooge.encrypted_data_storage.data.EncryptedSharedPreferencesStorage
 import ua.com.crooge.encrypted_data_storage.data.FileStorage
-import ua.com.crooge.encrypted_data_storage.data.FileStorageWithEncryptor
+import ua.com.crooge.encrypted_data_storage.data.FileWithEncryptorStorage
 import ua.com.crooge.encrypted_data_storage.data.SharedPreferencesStorage
+import ua.com.crooge.encrypted_data_storage.data.SharedPreferencesWithEncryptorStorage
 import ua.com.crooge.encrypted_data_storage.model.User
 
 class MainActivity : AppCompatActivity() {
@@ -78,21 +79,21 @@ class MainActivity : AppCompatActivity() {
 
 
 
-            /* ============== FileStorageWithEncryptor ============== */
+            /* ============== fileWithEncryptorStorage ============== */
 
-            val fileStorageWithEncryptor = FileStorageWithEncryptor(applicationContext, moshi, encryptor)
+            val fileWithEncryptorStorage = FileWithEncryptorStorage(applicationContext, moshi, encryptor)
 
-//        fileStorageWithEncryptor.save("Angelina Jolie", angelina)
-            time = getMethodExecutionTime { fileStorageWithEncryptor.save("Angelina Jolie", angelina) }
+//        FileWithEncryptorStorage.save("Angelina Jolie", angelina)
+            time = getMethodExecutionTime { fileWithEncryptorStorage.save("Angelina Jolie", angelina) }
 
-//        val angelinaJolieFSWE = fileStorageWithEncryptor.load<User>("Angelina Jolie")
-            time = getMethodExecutionTime { fileStorageWithEncryptor.load<User>("Angelina Jolie") }
+//        val angelinaJolieFSWE = fileWithEncryptorStorage.load<User>("Angelina Jolie")
+            time = getMethodExecutionTime { fileWithEncryptorStorage.load<User>("Angelina Jolie") }
 
-//        fileStorageWithEncryptor.saveList("artists", listOf(billie, elizabeth, angelina))
-            time = getMethodExecutionTime { fileStorageWithEncryptor.saveList("artists", listOf(billie, elizabeth, angelina)) }
+//        fileWithEncryptorStorage.saveList("artists", listOf(billie, elizabeth, angelina))
+            time = getMethodExecutionTime { fileWithEncryptorStorage.saveList("artists", listOf(billie, elizabeth, angelina)) }
 
-//        val artistsFSWE = fileStorageWithEncryptor.loadList<User>("artists")
-            time = getMethodExecutionTime { fileStorageWithEncryptor.loadList<User>("artists") }
+//        val artistsFSWE = fileWithEncryptorStorage.loadList<User>("artists")
+            time = getMethodExecutionTime { fileWithEncryptorStorage.loadList<User>("artists") }
 
             /* ================================================== */
 
@@ -133,6 +134,26 @@ class MainActivity : AppCompatActivity() {
 
 //        val artistsSP = sharedPreferencesStorage.getList<User>("artists")
             time = getMethodExecutionTime { sharedPreferencesStorage.getList<User>("artists") }
+
+            /* =============================================================== */
+
+
+
+            /* ============== SharedPreferencesWithEncryptorStorage ============== */
+
+            val sharedPreferencesWithEncryptorStorage = SharedPreferencesWithEncryptorStorage(applicationContext, moshi, encryptor)
+
+//        sharedPreferencesWithEncryptorStorage.putObject("Angelina Jolie", angelina)
+            time = getMethodExecutionTime { sharedPreferencesWithEncryptorStorage.putObject("Angelina Jolie", angelina) }
+
+//        val angelinaJolieSPWE = sharedPreferencesWithEncryptorStorage.getObject<User>("Angelina Jolie")
+            time = getMethodExecutionTime { sharedPreferencesWithEncryptorStorage.getObject<User>("Angelina Jolie") }
+
+//        sharedPreferencesWithEncryptorStorage.putList("artists", listOf(billie, elizabeth, angelina))
+            time = getMethodExecutionTime { sharedPreferencesWithEncryptorStorage.putList("artists", listOf(billie, elizabeth, angelina)) }
+
+//        val artistsSPWE = sharedPreferencesWithEncryptorStorage.getList<User>("artists")
+            time = getMethodExecutionTime { sharedPreferencesWithEncryptorStorage.getList<User>("artists") }
 
             /* =============================================================== */
         }
