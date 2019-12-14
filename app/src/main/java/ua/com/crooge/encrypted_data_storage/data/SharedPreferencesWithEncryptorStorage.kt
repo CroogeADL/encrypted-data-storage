@@ -9,7 +9,7 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import ua.com.crooge.encrypted_data_storage.common.Encryptor
 
-private const val SHARED_PREFERENCES_WITH_ENCRYPTOR_STORAGE_NAME = "shared_preferences_with_encryptor_storage_name"
+private const val SHARED_PREFERENCES_WITH_ENCRYPTOR_STORAGE_NAME = "shared_preferences_with_encryptor_storage"
 
 class SharedPreferencesWithEncryptorStorage(context: Context, val moshi: Moshi, val encryptor: Encryptor) :
     SharedPreferences by context.getSharedPreferences(
