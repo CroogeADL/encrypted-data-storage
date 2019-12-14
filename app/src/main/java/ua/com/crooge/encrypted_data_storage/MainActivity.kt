@@ -46,13 +46,13 @@ class MainActivity : AppCompatActivity() {
 //        sharedPreferencesStorage.putObject("Angelina Jolie", angelina)
             var time = getMethodExecutionTime { sharedPreferencesStorage.putObject("Angelina Jolie", angelina) }
 
-//        val angelinaJolieSP = sharedPreferencesStorage.getObject<User>("Angelina Jolie")
+//        val angelinaJolieSPS = sharedPreferencesStorage.getObject<User>("Angelina Jolie")
             time = getMethodExecutionTime { sharedPreferencesStorage.getObject<User>("Angelina Jolie") }
 
 //        sharedPreferencesStorage.putList("artists", listOf(billie, elizabeth, angelina))
             time = getMethodExecutionTime { sharedPreferencesStorage.putList("artists", listOf(billie, elizabeth, angelina)) }
 
-//        val artistsSP = sharedPreferencesStorage.getList<User>("artists")
+//        val artistsSPS = sharedPreferencesStorage.getList<User>("artists")
             time = getMethodExecutionTime { sharedPreferencesStorage.getList<User>("artists") }
 
             /* ====================================================== */
@@ -66,13 +66,13 @@ class MainActivity : AppCompatActivity() {
 //        encryptedSharedPreferencesStorage.putObject("Angelina Jolie", angelina)
             time = getMethodExecutionTime { encryptedSharedPreferencesStorage.putObject("Angelina Jolie", angelina) }
 
-//        val angelinaJolieESP = encryptedSharedPreferencesStorage.getObject<User>("Angelina Jolie")
+//        val angelinaJolieESPS = encryptedSharedPreferencesStorage.getObject<User>("Angelina Jolie")
             time = getMethodExecutionTime { encryptedSharedPreferencesStorage.getObject<User>("Angelina Jolie") }
 
 //        encryptedSharedPreferencesStorage.putList("artists", listOf(billie, elizabeth, angelina))
             time = getMethodExecutionTime { encryptedSharedPreferencesStorage.putList("artists", listOf(billie, elizabeth, angelina)) }
 
-//        val artistsESP = encryptedSharedPreferencesStorage.getList<User>("artists")
+//        val artistsESPS = encryptedSharedPreferencesStorage.getList<User>("artists")
             time = getMethodExecutionTime { encryptedSharedPreferencesStorage.getList<User>("artists") }
 
             /* =============================================================== */
@@ -86,13 +86,13 @@ class MainActivity : AppCompatActivity() {
 //        sharedPreferencesWithEncryptorStorage.putObject("Angelina Jolie", angelina)
             time = getMethodExecutionTime { sharedPreferencesWithEncryptorStorage.putObject("Angelina Jolie", angelina) }
 
-//        val angelinaJolieSPWE = sharedPreferencesWithEncryptorStorage.getObject<User>("Angelina Jolie")
+//        val angelinaJolieSPWES = sharedPreferencesWithEncryptorStorage.getObject<User>("Angelina Jolie")
             time = getMethodExecutionTime { sharedPreferencesWithEncryptorStorage.getObject<User>("Angelina Jolie") }
 
 //        sharedPreferencesWithEncryptorStorage.putList("artists", listOf(billie, elizabeth, angelina))
             time = getMethodExecutionTime { sharedPreferencesWithEncryptorStorage.putList("artists", listOf(billie, elizabeth, angelina)) }
 
-//        val artistsSPWE = sharedPreferencesWithEncryptorStorage.getList<User>("artists")
+//        val artistsSPWES = sharedPreferencesWithEncryptorStorage.getList<User>("artists")
             time = getMethodExecutionTime { sharedPreferencesWithEncryptorStorage.getList<User>("artists") }
 
             /* =================================================================== */
@@ -146,13 +146,13 @@ class MainActivity : AppCompatActivity() {
 //        FileWithEncryptorStorage.save("Angelina Jolie", angelina)
             time = getMethodExecutionTime { fileWithEncryptorStorage.save("Angelina Jolie", angelina) }
 
-//        val angelinaJolieFSWE = fileWithEncryptorStorage.load<User>("Angelina Jolie")
+//        val angelinaJolieFWES = fileWithEncryptorStorage.load<User>("Angelina Jolie")
             time = getMethodExecutionTime { fileWithEncryptorStorage.load<User>("Angelina Jolie") }
 
 //        fileWithEncryptorStorage.saveList("artists", listOf(billie, elizabeth, angelina))
             time = getMethodExecutionTime { fileWithEncryptorStorage.saveList("artists", listOf(billie, elizabeth, angelina)) }
 
-//        val artistsFSWE = fileWithEncryptorStorage.loadList<User>("artists")
+//        val artistsFWES = fileWithEncryptorStorage.loadList<User>("artists")
             time = getMethodExecutionTime { fileWithEncryptorStorage.loadList<User>("artists") }
 
             /* ====================================================== */
