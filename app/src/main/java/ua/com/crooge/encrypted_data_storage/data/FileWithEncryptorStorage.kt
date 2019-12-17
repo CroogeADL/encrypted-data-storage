@@ -32,9 +32,7 @@ class FileWithEncryptorStorage(context: Context, val moshi: Moshi, val encryptor
             .fromJson(encryptor.decrypt(key, encryptedBytes))
     }
 
-    fun saveBytes(key: String, bytes: ByteArray) = remove(key).also {
-        getFile(key)?.writeBytes(bytes)
-    }
+    fun saveBytes(key: String, bytes: ByteArray) = getFile(key)?.writeBytes(bytes)
 
     fun loadBytes(key: String) = getFile(key, write = false)?.readBytes()
 

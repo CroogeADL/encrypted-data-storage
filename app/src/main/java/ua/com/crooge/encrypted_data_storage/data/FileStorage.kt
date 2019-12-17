@@ -11,21 +11,18 @@ class FileStorage(context: Context, val moshi: Moshi) {
         fileFolder.mkdirs()
     }
 
-    inline fun <reified T> save(key: String, obj: T) = remove(key).also {
+    inline fun <reified T> save(key: String, obj: T) =
         getFile(key)?.writeText(moshi.adapter<T>(T::class.java).toJson(obj))
-    }
 
     inline fun <reified T> load(key: String) = getFile(key, write = false)?.let { file ->
         moshi.adapter<T>(T::class.java).fromJson(file.readText())
     }
 
-    inline fun <reified T> saveList(key: String, obj: List<T>) = remove(key).also {
-        getFile(key)?.writeText(
-            moshi.adapter<List<T>>(
-                Types.newParameterizedType(List::class.java, T::class.java)
-            ).toJson(obj)
-        )
-    }
+    inline fun <reified T> saveList(key: String, obj: List<T>) = getFile(key)?.writeText(
+        moshi.adapter<List<T>>(
+            Types.newParameterizedType(List::class.java, T::class.java)
+        ).toJson(obj)
+    )
 
     inline fun <reified T> loadList(key: String) =
         getFile(key, write = false)?.let { file ->
@@ -33,9 +30,7 @@ class FileStorage(context: Context, val moshi: Moshi) {
                 .fromJson(String(file.readBytes()))
         }
 
-    fun saveBytes(key: String, bytes: ByteArray) = remove(key).also {
-        getFile(key)?.writeBytes(bytes)
-    }
+    fun saveBytes(key: String, bytes: ByteArray) = getFile(key)?.writeBytes(bytes)
 
     fun loadBytes(key: String) = getFile(key, write = false)?.readBytes()
 
